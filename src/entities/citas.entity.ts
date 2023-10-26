@@ -1,10 +1,13 @@
 // Fernando Montoya
 
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn, } from 'typeorm';
+import { DoctorEntity } from './doctor.entity';
+import { TratamientoEntity } from './tratamiento.entity';
+import { HistoriaEntity } from './historia.entity';
 
 @Entity({ name: 'citas' })
 export class CitasEntity {
-
+  
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -45,5 +48,14 @@ export class CitasEntity {
   dentista: string;
 
   @Column({ type: 'varchar', length: 100, nullable: false })
-  motivo: string;    
+  motivo: string; 
+  
+  @ManyToOne(() => TratamientoEntity, tratamiento => tratamiento.citas)
+  tratamiento: TratamientoEntity;
+
+  @ManyToMany(() => DoctorEntity, doctor => doctor.citas)
+  doctores: DoctorEntity[];
+
+  @OneToOne(() => HistoriaEntity, historia => historia.cita)
+  historia: HistoriaEntity;
 }

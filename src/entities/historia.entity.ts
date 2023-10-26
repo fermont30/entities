@@ -1,6 +1,7 @@
 // Fernando Montoya
 
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { CitasEntity } from './citas.entity';
 
 @Entity({ name: 'historia' })
 export class HistoriaEntity {
@@ -67,4 +68,8 @@ export class HistoriaEntity {
   
   @Column({ type: 'varchar', length: 100, nullable: false })
   medicamentos: string
+
+  @OneToOne(() => CitasEntity)
+  @JoinColumn()
+  cita: CitasEntity;
 }
