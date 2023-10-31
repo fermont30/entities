@@ -1,6 +1,6 @@
 // Fernando Montoya
 
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, DeleteDateColumn, UpdateDateColumn, JoinTable } from "typeorm";
 import { CitasEntity } from "./citas.entity";
 
 
@@ -38,6 +38,6 @@ export class DoctorEntity {
   especialidad: string;  
 
   @ManyToMany(() => CitasEntity, cita => cita.doctores)
+  @JoinTable()
   citas: CitasEntity[];
-
 }

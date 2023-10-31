@@ -48,11 +48,7 @@ export class UsuarioEntity {
   password: string;
 
   @ManyToMany(() => RolEntity, (rol) => rol.usuarios, { eager: true })
-  @JoinTable({
-    name: 'usuario_rol',
-    joinColumn: { name: 'usuario_id' },
-    inverseJoinColumn: { name: 'rol_id' },
-  })
+  @JoinTable()
   roles: RolEntity[];
 
 }

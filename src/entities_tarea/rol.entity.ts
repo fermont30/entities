@@ -1,5 +1,4 @@
 // Fernando Montoya
-import { RolNombre } from 'src/enum/rol.enum';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { UsuarioEntity } from './usuario.entity';
 
@@ -30,7 +29,7 @@ export class RolEntity {
   deleteAt: Date;
 
   @Column({ type: 'varchar', length: 10, nullable: false, unique: true })
-  rolNombre: RolNombre;
+  rolNombre: string;
 
   @ManyToMany(() => UsuarioEntity, (usuario) => usuario.roles)
   usuarios: UsuarioEntity[];
